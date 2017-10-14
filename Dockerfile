@@ -49,7 +49,7 @@ RUN apt-get update --fix-missing && apt-get upgrade -y && \
     apt-get clean && \
     apt-get autoremove -y
 
-RUN git clone https://github.com/owtf/owtf.git /owtf && \
+RUN git clone -b v2.1a https://github.com/owtf/owtf.git /owtf && \
     mkdir -p /owtf/tools/restricted && \
     python /owtf/install/install.py
 
