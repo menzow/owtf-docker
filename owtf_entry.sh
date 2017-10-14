@@ -23,7 +23,7 @@ sed -i 's@INBOUND_PROXY_IP: 127.0.0.1@INBOUND_PROXY_IP: 0.0.0.0@' ${HOME}/.owtf/
 sed -i 's@SERVER_ADDR: 127.0.0.1@SERVER_ADDR: 0.0.0.0@' ${HOME}/.owtf/configuration/framework_config.cfg
 
 # Start postgres server and configure db.
-sh owtf/scripts/postgres_entry.sh
+sh /owtf/scripts/postgres_entry.sh
 
 if [ $# -gt 0 ]; then
   for arg in "$@"
@@ -37,4 +37,4 @@ fi
 
 # Run owtf.
 source ~/.bashrc; workon owtf
-./owtf/owtf.py
+/owtf/owtf.py
