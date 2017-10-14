@@ -9,8 +9,6 @@ ENV SHELL /bin/bash
 
 EXPOSE 8010 8009 8008
 
-USER postgres
-VOLUME  ["/etc/postgresql", "/var/log/postgresql", "/var/lib/postgresql"]
 
 RUN apt-get update --fix-missing && apt-get upgrade -y && \
     apt-get install -y  sudo \
@@ -59,6 +57,9 @@ COPY postgres_entry.sh /owtf/scripts
 
 COPY owtf_entry.sh /usr/bin/
 RUN chmod +x /usr/bin/owtf_entry.sh
+
+USER postgres
+VOLUME  ["/etc/postgresql", "/var/log/postgresql", "/var/lib/postgresql"]
 
 ENTRYPOINT ["/usr/bin/owtf_entry.sh"]
 
