@@ -61,5 +61,10 @@ RUN chmod +x /usr/bin/owtf_entry.sh
 USER postgres
 VOLUME  ["/etc/postgresql", "/var/log/postgresql", "/var/lib/postgresql"]
 
+ENV USER root
+USER root
+
+WORKDIR /data
+
 ENTRYPOINT ["/usr/bin/owtf_entry.sh"]
 
