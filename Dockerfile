@@ -12,38 +12,46 @@ EXPOSE 8010 8009 8008
 USER postgres
 VOLUME  ["/etc/postgresql", "/var/log/postgresql", "/var/lib/postgresql"]
 
-ENV USER root
-USER root
-
 RUN apt-get update --fix-missing && apt-get upgrade -y && \
     apt-get install -y  sudo \
-                    git \
-                    python-setuptools \
-                    python-pip \
-                    xvfb \
-                    xserver-xephyr \
-                    libxml2-dev \
-                    libxslt-dev \
-                    postgresql-server-dev-all \
-                    libcurl4-openssl-dev \
-                    proxychains \
-                    unzip \
-                    build-essential \
-                    libssl-dev \
-                    libz-dev \
-                    libffi-dev \
-                    python-dev \
-                    postgresql \
-                    postgresql-client \
-                    postgresql-client-common && \
+        git \
+        python-setuptools \
+        python-pip \
+        xvfb \
+        xserver-xephyr \
+        libxml2-dev \
+        libxslt-dev \
+        postgresql-server-dev-all \
+        libcurl4-openssl-dev \
+        proxychains \
+        unzip \
+        build-essential \
+        libssl-dev \
+        libz-dev \
+        libffi-dev \
+        python-dev \
+        postgresql \
+        postgresql-client \
+        theharvester \
+        tlssled \
+        nikto \
+        dnsrecon \
+        nmap \
+        whatweb \
+        skipfish \
+        dirbuster \
+        metasploit-framework \
+        wpscan \
+        wapiti \
+        waffit \
+        hydra \
+        metagoofil \
+        o-saft \
+        postgresql-client-common && \
     apt-get clean && \
     apt-get autoremove -y
 
-COPY optional_tools.sh /usr/bin/COPY optional_tools.sh /usr/bin/
-
-RUN chmod +x /usr/bin/optional_tools.sh && \
-    /bin/bash /usr/bin/optional_tools.sh && \
-    git clone https://github.com/owtf/owtf.git /owtf && \
+RUN git clone https://github.com/owtf/owtf.git /owtf && \
     mkdir -p /owtf/tools/restricted && \
     python /owtf/install/install.py
 
